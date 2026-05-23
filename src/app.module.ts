@@ -7,10 +7,12 @@ import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.i
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
 import { TransformResponseInterceptor } from './common/interceptors/transform-response.interceptor';
+import { AgnoModule } from './modules/agno/agno.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    AgnoModule,
     // Add feature modules here
   ],
   providers: [
