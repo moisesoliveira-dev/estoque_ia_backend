@@ -17,7 +17,7 @@ import { TransformResponseInterceptor } from './common/interceptors/transform-re
     { provide: APP_FILTER, useClass: HttpExceptionFilter },
     { provide: APP_INTERCEPTOR, useClass: CorrelationIdInterceptor },
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
-    { provide: APP_INTERCEPTOR, useClass: TimeoutInterceptor },
+    { provide: APP_INTERCEPTOR, useFactory: () => new TimeoutInterceptor(30_000) },
     { provide: APP_INTERCEPTOR, useClass: TransformResponseInterceptor },
   ],
 })

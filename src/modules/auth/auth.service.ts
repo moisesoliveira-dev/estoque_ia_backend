@@ -40,9 +40,10 @@ export class AuthService {
         const payload: JwtPayload = { sub: userId, email, roles };
 
         const accessToken = this.jwtService.sign(payload);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const refreshToken = this.jwtService.sign(payload, {
             secret: this.configService.get<string>('jwt.refreshSecret'),
-            expiresIn: this.configService.get<string>('jwt.refreshExpiresIn'),
+            expiresIn: this.configService.get<string>('jwt.refreshExpiresIn') as any,
         });
 
         return { accessToken, refreshToken };
