@@ -7,6 +7,11 @@ export class RolesGuard implements CanActivate {
     constructor(private readonly reflector: Reflector) { }
 
     canActivate(context: ExecutionContext): boolean {
+        // Dev bypass: full admin access in development
+        if (process.env.APP_ENV === 'development') {
+            return true;
+        }
+
         const requiredRoles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [
             context.getHandler(),
             context.getClass(),
